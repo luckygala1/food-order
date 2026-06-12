@@ -28,6 +28,10 @@ public class OrderItemEntity {
 
 
     private UUID productId;
+
+    @Column(name = "name")
+    private String name;
+
     private BigDecimal price;
     private Integer quantity;
     private BigDecimal subTotal;

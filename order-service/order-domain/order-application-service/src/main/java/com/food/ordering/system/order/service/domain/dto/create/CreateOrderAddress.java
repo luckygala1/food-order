@@ -13,14 +13,18 @@ import lombok.Getter;
 public class CreateOrderAddress {
 
     @NotNull
-    @Max(value = 10)
-    public final String postalCode;
-
-    @NotNull
     @Max(value = 50)
     public final String street;
 
     @NotNull
+    @Max(value = 10)
+    public final String doorNumber;
+
+    @NotNull
     @Max(value = 20)
-    public final String city;
+    public final String recipientName;
+
+    @NotNull
+    @Max(value = 20)
+    public final String phone;
 }

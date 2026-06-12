@@ -29,6 +29,7 @@ CREATE TABLE "order".order_items
     id bigint NOT NULL,
     order_id uuid NOT NULL,
     product_id uuid NOT NULL,
+    name character varying COLLATE pg_catalog."default",
     price numeric(10,2) NOT NULL,
     quantity integer NOT NULL,
     sub_total numeric(10,2) NOT NULL ,
@@ -50,8 +51,9 @@ CREATE TABLE "order".order_address
     id uuid NOT NULL,
     order_id uuid UNIQUE NOT NULL,
     street character varying COLLATE pg_catalog."default" NOT NULL,
-    postal_code character varying COLLATE pg_catalog."default" NOT NULL,
-    city character varying COLLATE pg_catalog."default" NOT NULL,
+    door_number character varying COLLATE pg_catalog."default",
+    recipient_name character varying COLLATE pg_catalog."default",
+    phone character varying COLLATE pg_catalog."default",
     CONSTRAINT order_address_pkey PRIMARY KEY (id, order_id)
 );
 

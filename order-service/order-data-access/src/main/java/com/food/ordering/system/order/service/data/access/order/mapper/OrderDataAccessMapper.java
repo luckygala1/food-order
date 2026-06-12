@@ -62,7 +62,9 @@ public class OrderDataAccessMapper {
         return items.stream()
                 .map(orderItemEntity -> OrderItem.builder()
                         .orderItemId(new OrderItemId(orderItemEntity.getId()))
-                        .product(new Product(new ProductId(orderItemEntity.getProductId())))
+                        .product(new Product(new ProductId(orderItemEntity.getProductId()),
+                                orderItemEntity.getName(),
+                                new Money(orderItemEntity.getPrice())))
                         .quantity(orderItemEntity.getQuantity())
                         .price(new Money(orderItemEntity.getPrice()))
                         .subTotal(new Money(orderItemEntity.getSubTotal()))
@@ -73,8 +75,9 @@ public class OrderDataAccessMapper {
     private StreetAddress addressEntityToOrderDeliveryAddress(OrderAddressEntity address) {
         return new StreetAddress(address.getId(),
                 address.getStreet(),
-                address.getPostalCode(),
-                address.getCity());
+                address.getDoorNumber(),
+                address.getRecipientName(),
+                address.getPhone());
     }
 
     private List<OrderItemEntity> orderItemsToOrderItemsEntity(List<OrderItem> orderItems) {
@@ -83,6 +86,7 @@ public class OrderDataAccessMapper {
                 .map(orderItem -> OrderItemEntity.builder()
                         .id(orderItem.getId().getValue())
                         .productId(orderItem.getProduct().getId().getValue())
+                        .name(orderItem.getProduct().getName())
                         .price(orderItem.getPrice().getAmount())
                         .quantity(orderItem.getQuantity())
                         .subTotal(orderItem.getSubTotal().getAmount())
@@ -93,9 +97,10 @@ public class OrderDataAccessMapper {
     private OrderAddressEntity deliveryAddressToOrderAddressEntity(StreetAddress deliveryAddress) {
         return OrderAddressEntity.builder()
                 .id(deliveryAddress.getUuid())
-                .city(deliveryAddress.getCity())
-                .postalCode(deliveryAddress.getPostalCode())
                 .street(deliveryAddress.getStreet())
+                .doorNumber(deliveryAddress.getDoorNumber())
+                .recipientName(deliveryAddress.getRecipientName())
+                .phone(deliveryAddress.getPhone())
                 .build();
     }
 

@@ -13,6 +13,7 @@ import com.food.ordering.system.order.service.domain.dto.create.CreateOrderComma
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderAddress;
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderItem;
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
+import com.food.ordering.system.order.service.domain.dto.track.OrderItemData;
 import com.food.ordering.system.order.service.domain.dto.track.TrackingOrderResponse;
 import com.food.ordering.system.order.service.domain.valueobject.*;
 import org.springframework.stereotype.Component;
@@ -59,6 +60,16 @@ public class OrderDataMapper {
                 .orderTrackingId(order.getTrackingId().getValue())
                 .orderStatus(order.getOrderStatus())
                 .failureMessages(order.getFailureMessages())
+                .items(order.getItems() != null ? order.getItems().stream()
+                        .map(item -> OrderItemData.builder()
+                                .productId(item.getProduct().getId().getValue())
+                                .productName(item.getProduct().getName())
+                                .price(item.getPrice().getAmount())
+                                .quantity(item.getQuantity())
+                                .subTotal(item.getSubTotal().getAmount())
+                                .build())
+                        .toList() : List.of())
+                .price(order.getPrice().getAmount())
                 .build();
     }
 
@@ -78,8 +89,9 @@ public class OrderDataMapper {
         return new StreetAddress(
                 UUID.randomUUID(),
                 createOrderAddress.getStreet(),
-                createOrderAddress.getPostalCode(),
-                createOrderAddress.getCity()
+                createOrderAddress.getDoorNumber(),
+                createOrderAddress.getRecipientName(),
+                createOrderAddress.getPhone()
         );
     }
 }

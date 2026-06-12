@@ -7,15 +7,17 @@ public class StreetAddress {
 
     private final UUID uuid;
     private final String street;
-    private final String postalCode;
-    private final String city;
+    private final String doorNumber;
+    private final String recipientName;
+    private final String phone;
 
 
-    public StreetAddress(UUID uuid, String street, String postalCode, String city) {
+    public StreetAddress(UUID uuid, String street, String doorNumber, String recipientName, String phone) {
         this.uuid = uuid;
         this.street = street;
-        this.postalCode = postalCode;
-        this.city = city;
+        this.doorNumber = doorNumber;
+        this.recipientName = recipientName;
+        this.phone = phone;
     }
 
     public UUID getUuid() {
@@ -26,12 +28,16 @@ public class StreetAddress {
         return street;
     }
 
-    public String getPostalCode() {
-        return postalCode;
+    public String getDoorNumber() {
+        return doorNumber;
     }
 
-    public String getCity() {
-        return city;
+    public String getRecipientName() {
+        return recipientName;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
 
@@ -40,11 +46,12 @@ public class StreetAddress {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StreetAddress that = (StreetAddress) o;
-        return Objects.equals(street, that.street) && Objects.equals(postalCode, that.postalCode) && Objects.equals(city, that.city);
+        return Objects.equals(street, that.street) && Objects.equals(doorNumber, that.doorNumber)
+                && Objects.equals(recipientName, that.recipientName) && Objects.equals(phone, that.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(street, postalCode, city);
+        return Objects.hash(street, doorNumber, recipientName, phone);
     }
 }
