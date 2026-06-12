@@ -101,3 +101,50 @@ CREATE trigger refresh_order_restaurant_m_view
 after INSERT OR UPDATE OR DELETE OR truncate
 ON restaurant.restaurant_products FOR each statement
 EXECUTE PROCEDURE restaurant.refresh_order_restaurant_m_view();
+
+-- Seed data: 2 restaurants, 18 products
+INSERT INTO restaurant.restaurants (id, name, active) VALUES
+('d215b5f8-0249-4dc5-89a3-51fd148cfb45', 'restaurant_1', true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb46', 'restaurant_2', true);
+
+INSERT INTO restaurant.products (id, name, price, available) VALUES
+('d215b5f8-0249-4dc5-89a3-51fd148cfb47', '番茄炒蛋', 25.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb48', '红烧牛肉面', 50.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb49', '宫保鸡丁', 20.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb50', '鱼香肉丝', 40.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb60', '麻婆豆腐', 22.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb61', '蛋炒饭', 18.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb62', '糖醋里脊', 35.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb63', '清炒时蔬', 16.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb64', '酸菜鱼', 55.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb65', '水煮肉片', 38.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb80', '回锅肉', 32.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb81', '干煸四季豆', 20.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb82', '辣子鸡', 28.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb83', '凉拌黄瓜', 12.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb84', '口水鸡', 30.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb85', '地三鲜', 22.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb86', '小炒黄牛肉', 45.00, true),
+('d215b5f8-0249-4dc5-89a3-51fd148cfb87', '蒜蓉西兰花', 18.00, true);
+
+INSERT INTO restaurant.restaurant_products (id, restaurant_id, product_id) VALUES
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb45', 'd215b5f8-0249-4dc5-89a3-51fd148cfb47'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb45', 'd215b5f8-0249-4dc5-89a3-51fd148cfb48'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb45', 'd215b5f8-0249-4dc5-89a3-51fd148cfb49'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb45', 'd215b5f8-0249-4dc5-89a3-51fd148cfb50'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb45', 'd215b5f8-0249-4dc5-89a3-51fd148cfb60'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb45', 'd215b5f8-0249-4dc5-89a3-51fd148cfb61'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb45', 'd215b5f8-0249-4dc5-89a3-51fd148cfb62'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb45', 'd215b5f8-0249-4dc5-89a3-51fd148cfb63'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb45', 'd215b5f8-0249-4dc5-89a3-51fd148cfb64'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb46', 'd215b5f8-0249-4dc5-89a3-51fd148cfb65'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb46', 'd215b5f8-0249-4dc5-89a3-51fd148cfb80'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb46', 'd215b5f8-0249-4dc5-89a3-51fd148cfb81'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb46', 'd215b5f8-0249-4dc5-89a3-51fd148cfb82'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb46', 'd215b5f8-0249-4dc5-89a3-51fd148cfb83'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb46', 'd215b5f8-0249-4dc5-89a3-51fd148cfb84'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb46', 'd215b5f8-0249-4dc5-89a3-51fd148cfb85'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb46', 'd215b5f8-0249-4dc5-89a3-51fd148cfb86'),
+(gen_random_uuid(), 'd215b5f8-0249-4dc5-89a3-51fd148cfb46', 'd215b5f8-0249-4dc5-89a3-51fd148cfb87');
+
+REFRESH MATERIALIZED VIEW restaurant.order_restaurant_m_view;
