@@ -42,7 +42,7 @@ public  class Money {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Money money = (Money) obj;
-        return amount.equals(money.amount);
+        return amount.compareTo(money.amount) == 0;
     }
 
 
