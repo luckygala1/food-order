@@ -40,3 +40,8 @@ build/
 
 ### Claude ###
 .claude/
+.gstack/
+
+### Frontend ###
+frontend/node_modules/
+frontend/dist/
